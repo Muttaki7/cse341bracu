@@ -1,0 +1,290 @@
+task-1
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+; No additional data needed
+
+.CODE
+MAIN PROC
+
+; Initialize DS
+MOV AX, @DATA
+MOV DS, AX
+
+; Task 01 Code
+MOV AX, -10    ; Example input
+CMP AX, 0      ; Compare AX with 0
+JGE T1_END     ; Jump if AX >= 0
+MOV AX, 5      ; Replace AX with 5 if negative
+T1_END:
+
+; Exit to DOS
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
+task2
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+; No additional data needed
+
+.CODE
+MAIN PROC
+
+; Initialize DS
+MOV AX, @DATA
+MOV DS, AX
+
+; Task 02 Code
+MOV AL, 'B'    ; Example input
+MOV BL, 'A'
+CMP AL, BL     ; Compare AL and BL
+JL T2_OUTPUT_BL
+MOV DL, AL     ; AL comes first
+JMP T2_DISPLAY
+T2_OUTPUT_BL:
+MOV DL, BL     ; BL comes first
+T2_DISPLAY:
+MOV AH, 2
+INT 21H
+
+; Exit to DOS
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
+task-3
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+; No additional data needed
+
+.CODE
+MAIN PROC
+
+; Initialize DS
+MOV AX, @DATA
+MOV DS, AX
+
+; Task 03 Code
+MOV AX, -5     ; Example input
+CMP AX, 0
+JL T3_NEGATIVE
+JE T3_ZERO
+MOV BX, 1      ; AX > 0
+JMP T3_END
+T3_NEGATIVE:
+MOV BX, -1     ; AX < 0
+JMP T3_END
+T3_ZERO:
+MOV BX, 0      ; AX == 0
+T3_END:
+
+; Exit to DOS
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
+task-4
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+; No additional data needed
+
+.CODE
+MAIN PROC
+
+; Initialize DS
+MOV AX, @DATA
+MOV DS, AX
+
+; Task 04 Code
+MOV AL, 3      ; Example input
+CMP AL, 1
+JE T4_OUTPUT_O
+CMP AL, 3
+JE T4_OUTPUT_O
+CMP AL, 2
+JE T4_OUTPUT_E
+CMP AL, 4
+JE T4_OUTPUT_E
+JMP T4_END
+T4_OUTPUT_O:
+MOV DL, 'o'
+JMP T4_DISPLAY
+T4_OUTPUT_E:
+MOV DL, 'e'
+T4_DISPLAY:
+MOV AH, 2
+INT 21H
+T4_END:
+
+; Exit to DOS
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
+task-5
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+; No additional data needed
+
+.CODE
+MAIN PROC
+
+; Initialize DS
+MOV AX, @DATA
+MOV DS, AX
+
+; Task 05 Code
+MOV AH, 1      ; Read input
+INT 21H
+CMP AL, 'A'
+JL T5_END      ; Not uppercase
+CMP AL, 'Z'
+JG T5_END      ; Not uppercase
+MOV DL, AL     ; Display character
+MOV AH, 2
+INT 21H
+T5_END:
+
+; Exit to DOS
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
+task-6
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+; No additional data needed
+
+.CODE
+MAIN PROC
+
+; Initialize DS
+MOV AX, @DATA
+MOV DS, AX
+
+; Task 06 Code
+MOV AH, 1
+INT 21H
+CMP AL, 'y'
+JE T6_DISPLAY
+CMP AL, 'Y'
+JE T6_DISPLAY
+JMP T6_END
+T6_DISPLAY:
+MOV DL, AL
+MOV AH, 2
+INT 21H
+T6_END:
+
+; Exit to DOS
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
+task-7
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+; No additional data needed
+
+.CODE
+MAIN PROC
+
+; Initialize DS
+MOV AX, @DATA
+MOV DS, AX
+
+; Task 07 Code
+MOV AX, 7      ; Example input
+MOV DX, 0
+MOV BX, 2
+DIV BX         ; Divide AX by 2
+CMP DX, 0      ; Check remainder
+JE T7_EVEN
+MOV DL, 'O'    ; Odd
+JMP T7_DISPLAY
+T7_EVEN:
+MOV DL, 'E'    ; Even
+T7_DISPLAY:
+MOV AH, 2
+INT 21H
+
+; Exit to DOS
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
+task-8
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+; No additional data needed
+
+.CODE
+MAIN PROC
+
+; Initialize DS
+MOV AX, @DATA
+MOV DS, AX
+
+; Task 08 Code
+MOV AH, 1
+INT 21H
+MOV AL, DL
+CMP AL, 'A'
+JE T8_VOWEL
+CMP AL, 'E'
+JE T8_VOWEL
+CMP AL, 'I'
+JE T8_VOWEL
+CMP AL, 'O'
+JE T8_VOWEL
+CMP AL, 'U'
+JE T8_VOWEL
+CMP AL, 'a'
+JE T8_VOWEL
+CMP AL, 'e'
+JE T8_VOWEL
+CMP AL, 'i'
+JE T8_VOWEL
+CMP AL, 'o'
+JE T8_VOWEL
+CMP AL, 'u'
+JE T8_VOWEL
+MOV DL, 'C'    ; Consonant
+JMP T8_DISPLAY
+T8_VOWEL:
+MOV DL, 'V'    ; Vowel
+T8_DISPLAY:
+MOV AH, 2
+INT 21H
+
+; Exit to DOS
+MOV AX, 4C00H
+INT 21H
+
+MAIN ENDP
+END MAIN
+
+
